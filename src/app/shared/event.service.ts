@@ -1,45 +1,15 @@
-import { Component, OnInit, forwardRef, Inject } from '@angular/core';
-import { EventService } from '../shared/event.service';
-import { ToastrService } from '../common/toastr.service';
+import { Injectable } from '@angular/core';
 
-
-
-@Component({
-  selector: 'events-list',
-  template: `
-  <div>
-  <h1>Upcoming Angular Events</h1>
-
-  <hr/>
-  <div class="row">
-  <div *ngFor="let event of events" class="col-md-5">
-      <event-thumbnail (click) = "handleThumbnailclick(event.name)" [event]="event" ></event-thumbnail>
-  </div>
-  </div>
-</div>
-  `
-})
-export class EventsListComponent implements OnInit {
-  events: any[];
-
-  // constructor(private eventService: EventService, private toastr: ToastrService) {
-  //   //this.events = this.getEvents();
-  // }
-  constructor(@Inject(forwardRef(() => EventService)) private eventService: EventService,
-              @Inject(forwardRef(() => ToastrService)) private toastrService: ToastrService) {
-
+@Injectable()
+export class EventService {
+  getEvents() {
+    return EVENTS;
   }
-  ngOnInit() {
-    this.events = this.eventService.getEvents();
-  }
-
   getEvent(id: number) {
-    return this.eventService.getEvent(1);
-  }
-  handleThumbnailclick(eventName) {
-    this.toastrService.success(eventName);
+    return EVENTS.find( event => event.id === id );
   }
 }
+
 
 const EVENTS = [
   {
