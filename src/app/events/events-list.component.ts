@@ -1,11 +1,11 @@
 import { Component, OnInit, forwardRef, Inject } from '@angular/core';
 import { EventService } from '../shared/event.service';
 import { ToastrService } from '../common/toastr.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
 @Component({
-  selector: 'events-list',
   template: `
   <div>
   <h1>Upcoming Angular Events</h1>
@@ -20,17 +20,19 @@ import { ToastrService } from '../common/toastr.service';
   `
 })
 export class EventsListComponent implements OnInit {
-  events: any[];
+  events: any;
 
   // constructor(private eventService: EventService, private toastr: ToastrService) {
   //   //this.events = this.getEvents();
   // }
   constructor(@Inject(forwardRef(() => EventService)) private eventService: EventService,
-              @Inject(forwardRef(() => ToastrService)) private toastrService: ToastrService) {
+              @Inject(forwardRef(() => ToastrService)) private toastrService: ToastrService,
+              @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute) {
 
   }
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    // this.eventService.getEvents().subscribe(events => { this.events = events;});
+    this.events = this.route.snapshot.data['events'];
   }
 
   getEvent(id: number) {
