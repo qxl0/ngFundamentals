@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { EventService } from '../../shared/event.service';
 import { ActivatedRoute } from '@angular/router';
+import { IEvent } from 'src/app/shared';
 
 @Component( {
   templateUrl: './event-details.component.html',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   `]
 })
 export class EventDetailsComponent implements OnInit {
-  event: any;
+  event: IEvent;
   constructor(@Inject(forwardRef(() => EventService)) private es: EventService,
               @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute)
   {
