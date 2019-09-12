@@ -10,6 +10,11 @@ export class EventService {
     setTimeout(() => {subject.next(EVENTS); subject.complete(); }, 100);
     return subject;
   }
+  saveEvent(event) {
+    event.id = 999;
+    event.session = [];
+    EVENTS.push(event);
+  }
   getEvent(id: number): IEvent {
     // tslint:disable-next-line: no-use-before-declare
     return EVENTS.find( event => event.id === id );
