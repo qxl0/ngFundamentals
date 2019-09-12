@@ -26,9 +26,10 @@ export class EventsListComponent implements OnInit {
   // constructor(private eventService: EventService, private toastr: ToastrService) {
   //   //this.events = this.getEvents();
   // }
-  constructor(@Inject(forwardRef(() => EventService)) private eventService: EventService,
-              @Inject(forwardRef(() => ToastrService)) private toastrService: ToastrService,
-              @Inject(forwardRef(() => ActivatedRoute)) private route: ActivatedRoute) {
+  // @Inject(forwardRef(() => EventService))
+  constructor( private eventService: EventService,
+               private toastrService: ToastrService,
+               private route: ActivatedRoute) {
 
   }
   ngOnInit() {

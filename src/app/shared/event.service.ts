@@ -19,6 +19,10 @@ export class EventService {
     // tslint:disable-next-line: no-use-before-declare
     return EVENTS.find( event => event.id === id );
   }
+  updateEvent(event) {
+    let index = EVENTS.findIndex( x => x.id = event.id);
+    EVENTS[index] = event;
+  }
 }
 
 
